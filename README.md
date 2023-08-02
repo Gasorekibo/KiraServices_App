@@ -1,5 +1,6 @@
 # KiraServices_App
 ALU Foundations Project<br>
+<p>Kira aims to enhance healthcare services in Rwanda by developing and launching a website called Kira Services. The website will provide information about nearby hospitals and medical facilities, enabling patients to compare and choose the most suitable option. It will also allow patients to check the availability of medical services and book appointments with healthcare providers, reducing long wait times and minimizing related costs</p>
 
 ## Features of the Kira Web App
 <b>User Authentication</b>
