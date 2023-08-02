@@ -1,4 +1,4 @@
-### KiraServices_App
+# KiraServices_App
 ALU Foundations Project<br>
 
 ## Features of the Kira Web App
@@ -34,7 +34,7 @@ ALU Foundations Project<br>
 </ul>
 <br>
 
-# MERN Stack Technology:
+### MERN Stack Technology:
 The Kira Web App is built using the MERN stack, which includes the following technologies:
 * MongoDB: MongoDB is used as the database management system to store data related to users, hospitals, appointments, and services.
 * Express.js: Express.js is the backend web framework for server-side operations, routing, and API handling.
