@@ -1,7 +1,7 @@
 // this component handles hospital login
 import React, { useState } from 'react';
 
-const HospitalLogin = () => {
+const loginToHospital = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -36,5 +36,5 @@ const HospitalLogin = () => {
   );
 };
 
-export default HospitalLogin;
+export default loginToHospital;
 

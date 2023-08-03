@@ -1,7 +1,7 @@
 // this component contains the hospital registration form
 import React, { useState } from 'react';
 
-const HospitalSignUp = () => {
+const registerHospital = () => {
   const [hospitalName, setHospitalName] = useState('');
   const [location, setLocation] = useState('');
   const [contact, setContact] = useState('');
@@ -45,5 +45,5 @@ const HospitalSignUp = () => {
   );
 };
 
-export default HospitalSignUp;
+export default registerHospital;
 
