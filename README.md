@@ -46,7 +46,7 @@ The Kira Web App is built using the MERN stack, which includes the following tec
 <ul>
   <li>Gasore MUGWANEZA</li>
   <li>Fabrice NKURUNZIZA</li>
-  <li>Ardine NUKURI</li>
+  <li>Ardine Martine NUKURI</li>
   <li>TUYISENGE Jacqueline</li>
   <li>Eduard SHARANGABO</li>
   <li>Micah Buldo</li>
