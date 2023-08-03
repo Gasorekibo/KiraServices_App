@@ -1,0 +1,1 @@
+// this component contains the hospital registration form
