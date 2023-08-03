@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Update the import statement
+
 import SignUp from './SignUp';
 import Login from './Login';
 import Home from './Home';
@@ -9,15 +10,16 @@ import HospitalLogin from './HospitalLogin';
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/user/signup" component={SignUp} />
-        <Route exact path="/user/login" component={Login} />
-        <Route exact path="/home" component={Home} />
-        <Route exact path="/hospital/signup" component={HospitalSignUp} />
-        <Route exact path="/hospital/login" component={HospitalLogin} />
-      </Switch>
+      <Routes> {/* Replace Switch with Routes */}
+        <Route path="/user/signup" element={<SignUp />} />
+        <Route path="/user/login" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/hospital/signup" element={<HospitalSignUp />} />
+        <Route path="/hospital/login" element={<HospitalLogin />} />
+      </Routes> {/* Replace Switch with Routes */}
     </Router>
   );
 }
 
 export default App;
+
