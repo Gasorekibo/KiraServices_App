@@ -1,11 +1,10 @@
 // this component contains the hospital registration form
 import React, { useState } from 'react';
-import axios from 'axios';
 
 const HospitalSignUp = () => {
   const [hospitalName, setHospitalName] = useState('');
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState(''); // Updated from 'contact' to 'phone'
+  const [phone, setPhone] = useState(''); // Corrected from 'contact' to 'phone'
   const [location, setLocation] = useState('');
   const [password, setPassword] = useState('');
 
@@ -27,6 +26,22 @@ const HospitalSignUp = () => {
           />
         </div>
         <div>
+          <label>Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Phone</label> {/* Corrected label */}
+          <input
+            type="text"
+            value={phone} // Corrected from 'contact' to 'phone'
+            onChange={(e) => setPhone(e.target.value)} // Corrected from 'setContact' to 'setPhone'
+          />
+        </div>
+        <div>
           <label>Location</label>
           <input
             type="text"
@@ -35,11 +50,11 @@ const HospitalSignUp = () => {
           />
         </div>
         <div>
-          <label>Contact</label>
+          <label>Password</label>
           <input
-            type="text"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)} // Updated from 'setContact' to 'setPhone'
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <button type="submit">Register</button>
@@ -49,4 +64,3 @@ const HospitalSignUp = () => {
 };
 
 export default HospitalSignUp;
-
