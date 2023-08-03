@@ -1,14 +1,14 @@
 // this component handles hospital login
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useRef } from 'react';
 
 const HospitalLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const emailRef = useRef(null); // Use useRef for email input ref
 
   const handleHospitalLogin = (e) => {
     e.preventDefault();
-    // Implement hospital login functionality here, e.g., calling an API to validate hospital credentials
+    // Implement hospital login functionality here, e.g., calling an API to log in the hospital
   };
 
   return (
@@ -21,6 +21,7 @@ const HospitalLogin = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            ref={emailRef} // Attach the ref to the email input
           />
         </div>
         <div>
@@ -38,4 +39,3 @@ const HospitalLogin = () => {
 };
 
 export default HospitalLogin;
-
