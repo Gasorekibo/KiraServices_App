@@ -7,7 +7,8 @@ const Header = () => {
 
   const handleLogout = () => {
     // Implement logout functionality here, e.g., clearing user authentication state
-    // and redirecting to the login page
+    // and redirecting to the login page//
+    localStorage.removeItem('userToken');
     history.push('/user/login');
   };
 
