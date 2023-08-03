@@ -5,7 +5,7 @@ import axios from 'axios';
 const HospitalSignUp = () => {
   const [hospitalName, setHospitalName] = useState('');
   const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState(''); // Updated from 'contact' to 'phone'
   const [location, setLocation] = useState('');
   const [password, setPassword] = useState('');
 
@@ -38,8 +38,8 @@ const HospitalSignUp = () => {
           <label>Contact</label>
           <input
             type="text"
-            value={contact}
-            onChange={(e) => setContact(e.target.value)}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)} // Updated from 'setContact' to 'setPhone'
           />
         </div>
         <button type="submit">Register</button>
