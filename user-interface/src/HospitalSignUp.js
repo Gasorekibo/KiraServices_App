@@ -1,10 +1,13 @@
 // this component contains the hospital registration form
 import React, { useState } from 'react';
+import axios from 'axios';
 
-const registerHospital = () => {
+const HospitalSignUp = () => {
   const [hospitalName, setHospitalName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [location, setLocation] = useState('');
-  const [contact, setContact] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleHospitalSignUp = (e) => {
     e.preventDefault();
@@ -45,5 +48,5 @@ const registerHospital = () => {
   );
 };
 
-export default registerHospital;
+export default HospitalSignUp;
 
