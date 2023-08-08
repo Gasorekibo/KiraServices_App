@@ -15,8 +15,7 @@ export const useSignUp = () => {
     phoneNumber,
     sex,
     status,
-    location,
-    image
+    location
   ) => {
     setLoading(true);
     setError(null);

@@ -42,6 +42,7 @@ const Register = () => {
     sex,
     status,
     location,
+    image,
     type,
   } = formData;
 
@@ -92,7 +93,6 @@ const Register = () => {
 
   const handleNavigate = () => {
     navigate("/login");
-    console.log("navigate");
   };
 
   return (

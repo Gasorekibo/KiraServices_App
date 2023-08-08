@@ -2,34 +2,44 @@ import Hospital from "../models/Hospital.js";
 import generateToken from "../utils/generateToken.js";
 
 const registerHospital = async (req, res) => {
-  const { email, phone, username, status, location, password, services } =
-    req.body;
-  console.log(req.body);
-  try {
-    const hospital = await Hospital.create({
-      username,
-      email,
-      phone,
-      status,
-      location,
-      password,
-      services,
-    });
+  const { email, phone, name, status, location, password, services } = req.body;
+  // console.log(req.body);
 
-    if (hospital) {
-      generateToken(res, hospital._id);
-      res.status(201).json({
-        _id: hospital._id,
-        name: hospital.name,
-        email: hospital.email,
-      });
+  try {
+    const hospitalExist = await Hospital.findOne({ email });
+
+    if (hospitalExist) {
+      res.status(400).json({ message: "Email already in use" });
     } else {
-      res.status(400).json({ message: "registration failed, Try again" });
+      const hospital = await Hospital.create({
+        name,
+        email,
+        phone,
+        status,
+        location,
+        password,
+        services,
+      });
+      if (hospital) {
+        generateToken(res, hospital._id);
+        res.status(201).json({
+          _id: hospital._id,
+          name: hospital.name,
+          email: hospital.email,
+          phone: hospital.phone,
+          status: hospital.status,
+          location: hospital.location,
+          services: hospital.services,
+        });
+      } else {
+        res.status(400).json({ message: "registration failed, Try again" });
+      }
     }
   } catch (err) {
     res
       .status(400)
       .json({ message: "registration failed😥 Try again", Error: err.message });
+    console.log(err);
   }
 };
 

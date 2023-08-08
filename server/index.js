@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import userRoute from "./routes/User.js";
 import mongoose from "mongoose";
+import hospitalRoutes from "./routes/hospital.js";
 dotenv.config();
 
 const app = express();
@@ -22,6 +23,7 @@ mongoose
   });
 
 app.use("/api/user", userRoute);
+app.use("/api/hospitals", hospitalRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
