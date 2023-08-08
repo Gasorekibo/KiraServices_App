@@ -2,11 +2,12 @@ import Hospital from "../models/Hospital.js";
 import generateToken from "../utils/generateToken.js";
 
 const registerHospital = async (req, res) => {
-  const { email, phone, name, status, location, password, services } = req.body;
+  const { email, phone, username, status, location, password, services } =
+    req.body;
   console.log(req.body);
   try {
     const hospital = await Hospital.create({
-      name,
+      username,
       email,
       phone,
       status,

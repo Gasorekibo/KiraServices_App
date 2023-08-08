@@ -16,6 +16,11 @@ const HospitalSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    image: {
+      type: String,
+      default:
+        "https://www.vhv.rs/dpng/d/312-3120300_default-hd-png-download.png",
+    },
     password: String,
     location: String,
     status: String,
