@@ -6,6 +6,7 @@ const HospitalSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
+      unique: true,
     },
     email: {
       type: String,
@@ -15,6 +16,11 @@ const HospitalSchema = new mongoose.Schema(
     phone: {
       type: String,
       required: true,
+    },
+    image: {
+      type: String,
+      default:
+        "https://www.vhv.rs/dpng/d/312-3120300_default-profile-hd-png-download.png",
     },
     password: String,
     location: String,
