@@ -17,10 +17,8 @@ const RegisterUser = () => {
     confirmPassword: "",
     phoneNumber: "",
     sex: "",
-    status: "",
+
     location: "",
-    hospital: "",
-    image: "",
   });
   const {
     username,
@@ -29,9 +27,9 @@ const RegisterUser = () => {
     confirmPassword,
     phoneNumber,
     sex,
-    status,
+
     location,
-    image,
+
     type,
   } = formData;
 
@@ -59,7 +57,7 @@ const RegisterUser = () => {
       confirmPassword,
       phoneNumber,
       sex,
-      status,
+
       location
     );
   };
@@ -140,48 +138,14 @@ const RegisterUser = () => {
               onChange={handleChange}
             />
 
-            {/* Verify  who is registering user/Hospital*/}
-
             <FormInput
-              name="status"
+              name="sex"
+              placeholder="Male"
               type="text"
-              placeholder="User/Hospital"
-              label="Register As"
-              value={status}
+              label="Sex"
+              value={sex}
               onChange={handleChange}
             />
-
-            {/* ========================== Show for hospital only */}
-
-            {status.toUpperCase() === "HOSPITAL" ? (
-              <>
-                <FormInput
-                  name="image"
-                  type="file"
-                  label="Upload hospital image"
-                  value={image}
-                  accept=".jpeg, .png, .jpg"
-                  onChange={handleChange}
-                />
-                <FormInput
-                  name="type"
-                  type="text"
-                  label="Hospital Status"
-                  value={type}
-                  placeholder="Private/Public"
-                  onChange={handleChange}
-                />
-              </>
-            ) : (
-              <FormInput
-                name="sex"
-                placeholder="Male"
-                type="text"
-                label="Sex"
-                value={sex}
-                onChange={handleChange}
-              />
-            )}
 
             <div className="flex items-center justify-between">
               <button
