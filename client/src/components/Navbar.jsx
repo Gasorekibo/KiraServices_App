@@ -4,14 +4,12 @@ import { Link } from "react-router-dom";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { useAuthContext } from "./hooks/useAuthHook";
 import SearchBar from "./SearchBar";
-import { useHospitalAuth } from "./hooks/useHospitalAuth";
 
 const Navbar = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [nav, setNav] = useState(false);
   const { logout } = useLogout();
   const { user } = useAuthContext();
-  const { changeHospitalToken, hospitalToken } = useHospitalAuth();
 
   useEffect(() => {
     if (window.location.pathname === "/") {

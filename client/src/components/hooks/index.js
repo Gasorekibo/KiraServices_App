@@ -11,9 +11,8 @@ const useHospitalsData = () => {
   return useContext(HospitalDataContext);
 };
 
-export { useNotification, useHospitalsData };
 const useHospitalHomeProvider = () => {
   return useContext(HospitalHomeContext);
 };
 
-export { useNotification, useHospitalHomeProvider };
+export { useHospitalHomeProvider, useNotification, useHospitalsData };
