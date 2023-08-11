@@ -7,6 +7,7 @@ import { NotificationProvider } from "./components/context/Notification";
 import { AuthContextProvider } from "./components/context/authContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { HospitalDataProvider } from "./components/context/HospitalDataPrivider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,7 +15,9 @@ root.render(
     <Router>
       <AuthContextProvider>
         <NotificationProvider>
-          <App />
+          <HospitalDataProvider>
+            <App />
+          </HospitalDataProvider>
         </NotificationProvider>
       </AuthContextProvider>
     </Router>

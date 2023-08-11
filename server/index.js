@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import userRoute from "./routes/User.js";
 import mongoose from "mongoose";
 import hospitalRoutes from "./routes/hospital.js";
+import eventRoutes from "./routes/event.js";
 dotenv.config();
 
 const app = express();
@@ -24,6 +25,7 @@ mongoose
 
 app.use("/api/user", userRoute);
 app.use("/api/hospitals", hospitalRoutes);
+app.use("/api/events", eventRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

@@ -3,7 +3,6 @@ import generateToken from "../utils/generateToken.js";
 
 const registerHospital = async (req, res) => {
   const { email, phone, name, status, location, password, services } = req.body;
-  // console.log(req.body);
 
   try {
     const hospitalExist = await Hospital.findOne({ email });
@@ -73,10 +72,24 @@ const updateHospitalProfile = async (req, res) => {
   res.status(200).json({ message: "profile updated" });
 };
 
+const findHospital = async (req, res) => {
+  console.log(req.body);
+
+  try {
+    const hospitals = await Hospital.find({});
+    console.log(hospitals);
+
+    res.status(200).json(hospitals);
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+};
+
 export {
   registerHospital,
   updateHospitalProfile,
   getHospitalProfile,
   loginToHospital,
   logoutHospital,
+  findHospital,
 };

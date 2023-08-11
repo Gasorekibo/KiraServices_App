@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useLogout } from "../components/hooks/useLogoutHook";
 import { Link } from "react-router-dom";
-import { AiOutlineClose, AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { useAuthContext } from "./hooks/useAuthHook";
+import SearchBar from "./SearchBar";
 const Navbar = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [nav, setNav] = useState(false);
@@ -29,18 +30,7 @@ const Navbar = () => {
         <h1 className="text-3xl font-bold text-[#068FFF]">
           <Link to="/">Kira Services</Link>
         </h1>
-        {showSearch && (
-          <div className="ml-4 flex items-center">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="border border-white mr-2 px-2 py-1 rounded-lg focus:outline-none focus:shadow-outline text-blue-600"
-            />
-            <button>
-              <AiOutlineSearch size={25} />
-            </button>
-          </div>
-        )}
+        {showSearch && <SearchBar />}
       </div>
       {!user ? (
         <div className="hidden md:flex items-center space-x-4 mr-36">
