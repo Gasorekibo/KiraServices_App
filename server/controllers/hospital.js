@@ -55,7 +55,6 @@ const loginToHospital = async (req, res) => {
 };
 
 const getHospitalProfile = async (req, res) => {
-  console.log("FROM THE GET PROFILE");
   const { token } = req.params;
   const id = await jwt.verify(token, process.env.JWT_SECRET);
 
@@ -83,16 +82,13 @@ const updateHospitalProfile = async (req, res) => {
   res.status(200).json({ message: "profile updated" });
 };
 
-const findHospital = async (req, res) => {
-  console.log(req.body);
-
+const getHospitals = async (req, res) => {
   try {
-    const hospitals = await Hospital.find({});
-    console.log(hospitals);
-
+    const hospitals = await Hospital.find({}).populate("services");
     res.status(200).json(hospitals);
   } catch (error) {
-    res.status(500).json(error.message);
+    console.error(error);
+    res.status(400).json({ err: error });
   }
 };
 
@@ -101,4 +97,5 @@ export {
   updateHospitalProfile,
   getHospitalProfile,
   loginToHospital,
+  getHospitals,
 };

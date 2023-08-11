@@ -20,7 +20,7 @@ const LoginUser = () => {
   const { email, password } = formData;
 
   const handleNavigate = () => {
-    navigate("/register");
+    navigate("/register-user");
   };
   const handleChange = (e) => {
     setFormData({

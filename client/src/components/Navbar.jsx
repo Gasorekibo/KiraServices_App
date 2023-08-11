@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useLogout } from "../components/hooks/useLogoutHook";
 import { Link } from "react-router-dom";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 import { useAuthContext } from "./hooks/useAuthHook";
-import SearchBar from "./SearchBar";
+import { handleSearch } from "../utils/helpers";
+import { useHospitals } from "./hooks";
 
 const Navbar = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [nav, setNav] = useState(false);
   const { logout } = useLogout();
   const { user } = useAuthContext();
+  const { data, searchValue, setSearchValue } = useHospitals();
 
   useEffect(() => {
     if (window.location.pathname === "/") {
@@ -25,13 +27,34 @@ const Navbar = () => {
     window.location.reload();
   };
 
+  const handleSearchClick = () => {
+    handleSearch(data, searchValue);
+  };
+
+  const handleSearchValueChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
   return (
     <div className=" flex justify-between items-center h-24 bg-[#000300] mx-auto px-4 text-white py-2 fixed top-0 left-0 right-0 z-10 w-full">
       <div className="flex items-center justify-center">
         <h1 className="text-3xl font-bold text-[#068FFF]">
           <Link to="/">Kira Services</Link>
         </h1>
-        {showSearch && <SearchBar />}
+        {showSearch && (
+          <div className="ml-4 flex items-center">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchValue}
+              className="border border-white mr-2 px-2 py-1 rounded-lg focus:outline-none focus:shadow-outline text-blue-600"
+              onChange={handleSearchValueChange}
+            />
+            <button>
+              <AiOutlineSearch size={25} onClick={handleSearchClick} />
+            </button>
+          </div>
+        )}
       </div>
       {!user ? (
         <div className="hidden md:flex items-center space-x-4 mr-36">

@@ -9,21 +9,18 @@ import "react-toastify/dist/ReactToastify.css";
 import { HospitalDataProvider } from "./components/context/HospitalDataPrivider";
 import { HospitalAuthProvider } from "./components/context/HospitalAuthProvider";
 import { HospitalHomeProvider } from "./components/context/HospitalHomeContext";
-import { NotificationProvider } from "./components/context/Notification";
+import { HospitalsDataProvider } from "./components/context/HospitalsDataContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
       <AuthContextProvider>
-        <NotificationProvider>
-          <HospitalDataProvider>
-            <App />
-          </HospitalDataProvider>
-        </NotificationProvider>
         <HospitalAuthProvider>
           <HospitalHomeProvider>
-            <App />
+            <HospitalsDataProvider>
+              <App />
+            </HospitalsDataProvider>
           </HospitalHomeProvider>
         </HospitalAuthProvider>
       </AuthContextProvider>
