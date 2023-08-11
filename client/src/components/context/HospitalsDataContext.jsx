@@ -6,6 +6,7 @@ const HospitalsDataContext = createContext();
 const HospitalsDataProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [filteredSearch, setFilteredSearch] = useState([]);
 
   const fetchHospitals = async () => {
     try {
@@ -22,7 +23,15 @@ const HospitalsDataProvider = ({ children }) => {
   }, []);
   return (
     <HospitalsDataContext.Provider
-      value={{ data, fetchHospitals, searchValue, setSearchValue, setData }}
+      value={{
+        data,
+        fetchHospitals,
+        searchValue,
+        setSearchValue,
+        setData,
+        filteredSearch,
+        setFilteredSearch,
+      }}
     >
       {children}
     </HospitalsDataContext.Provider>

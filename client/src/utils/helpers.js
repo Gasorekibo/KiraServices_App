@@ -4,7 +4,11 @@ const handleSearch = (data, searchValue) => {
     ? data.filter((hospital) => {
         const matchingServices =
           hospital.services &&
-          hospital.services.some((serviceId) => serviceId === searchValue);
+          hospital.services.some(
+            (service) =>
+              service.name === searchValue ||
+              service.description === searchValue
+          );
         return (
           hospital.name === searchValue ||
           hospital.location === searchValue ||
