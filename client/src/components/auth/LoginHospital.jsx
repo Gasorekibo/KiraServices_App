@@ -4,7 +4,6 @@ import Footer from "../Footer";
 import FormInput from "../FormInput";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useHospitalAuth } from "../hooks/useHospitalAuth";
 
 const LoginHospital = () => {
   const navigate = useNavigate();
@@ -17,7 +16,6 @@ const LoginHospital = () => {
     window.location.reload();
   };
   const { email, password } = formData;
-  const { changeHospitalToken } = useHospitalAuth();
 
   const handleNavigate = () => {
     navigate("/register-hospital");
@@ -37,7 +35,6 @@ const LoginHospital = () => {
       );
       const { jwtToken } = result.data;
       if (jwtToken) {
-        changeHospitalToken(jwtToken);
       } else console.log("Something else happened");
     } catch (error) {
       console.error(error);

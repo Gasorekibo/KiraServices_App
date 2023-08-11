@@ -72,20 +72,6 @@ const Navbar = () => {
           </Link>
         </div>
       )}
-      {/* <div className="hidden md:flex items-center space-x-4">
-        <Link to="/" className="p-4">
-          Home
-        </Link>
-        <Link to="/register" className="p-4">
-          Register
-        </Link>
-        <Link to="/login" className="p-4">
-          Login
-        </Link>
-        <Link to="/logout" className="p-4" onClick={handleLogout}>
-          Logout
-        </Link>
-      </div> */}
 
       <div className="md:hidden flex items-center">
         <button onClick={handleNav}>
@@ -125,5 +111,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// https://www.youtube.com/watch?v=MrEoixi8QY4&list=PL4cUxeGkcC9g8OhpOZxNdhXggFz2lOuCT&index=14

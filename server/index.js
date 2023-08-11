@@ -4,6 +4,8 @@ import userRoute from "./routes/User.js";
 import morgan from "morgan";
 import mongoose from "mongoose";
 import hospitalRoutes from "./routes/hospital.js";
+import eventRoutes from "./routes/event.js";
+dotenv.config();
 import cors from "cors";
 import serviceRouter from "./routes/service.js";
 
@@ -35,6 +37,7 @@ app.use("/api/services", serviceRouter);
 
 app.use("/api/user", userRoute);
 app.use("/api/hospitals", hospitalRoutes);
+app.use("/api/events", eventRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

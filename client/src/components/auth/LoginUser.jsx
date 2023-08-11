@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { useLogin } from "../hooks/useLoginHooks";
 import Spinner from "../Spinner";
 import { toast } from "react-toastify";
+import Calendar from "../Calendar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginUser = () => {
   const { logIn, error, loading } = useLogin();
@@ -43,7 +46,7 @@ const LoginUser = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-100 flex justify-center items-center">
+      <div className="min-h-screen bg-gray-100 flex justify-center items-center flex-col pt-48">
         <div className="max-w-md p-6 bg-white rounded shadow-md w-full">
           <h1 className="w-full text-3xl font-bold text-[#068FFF] mb-7 items-center">
             {" "}
@@ -85,7 +88,9 @@ const LoginUser = () => {
             </div>
           </form>
         </div>
+        <Calendar />
       </div>
+      <ToastContainer />
       <Footer />
     </>
   );

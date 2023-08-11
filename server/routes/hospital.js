@@ -5,6 +5,7 @@ import {
   loginToHospital,
   registerHospital,
   updateHospitalProfile,
+  findHospital,
 } from "../controllers/hospital.js";
 import upload from "../utils/multer.js";
 
