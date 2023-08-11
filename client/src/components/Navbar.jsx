@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { useAuthContext } from "./hooks/useAuthHook";
 import SearchBar from "./SearchBar";
+import { useHospitalAuth } from "./hooks/useHospitalAuth";
+
 const Navbar = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [nav, setNav] = useState(false);
   const { logout } = useLogout();
   const { user } = useAuthContext();
+  const { changeHospitalToken, hospitalToken } = useHospitalAuth();
 
   useEffect(() => {
     if (window.location.pathname === "/") {
@@ -36,12 +39,6 @@ const Navbar = () => {
         <div className="hidden md:flex items-center space-x-4 mr-36">
           <Link to="/" className="p-4">
             Home
-          </Link>
-          <Link to="/register" className="p-4">
-            Register
-          </Link>
-          <Link to="/login" className="p-4">
-            Login
           </Link>
         </div>
       ) : (
@@ -107,5 +104,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// https://www.youtube.com/watch?v=MrEoixi8QY4&list=PL4cUxeGkcC9g8OhpOZxNdhXggFz2lOuCT&index=14

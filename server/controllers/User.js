@@ -5,6 +5,7 @@ import validator from "validator";
 
 const registerUser = async (req, res) => {
   const { username, email, sex, phoneNumber, location } = req.body;
+  console.log("Hello from the frontend");
   //validating the inputs
   if (!username || !email || !sex || !phoneNumber) {
     return res.status(400).json("All fields are required");
@@ -36,9 +37,13 @@ const registerUser = async (req, res) => {
     });
 
     const savedUser = await newUser.save();
-    const access_token = jwt.sign({ id: savedUser._id }, process.env.jwt_key, {
-      expiresIn: "2d",
-    });
+    const access_token = jwt.sign(
+      { id: savedUser._id },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "2d",
+      }
+    );
     const dataSaved = { ...savedUser._doc, access_token };
     const { password, ...otherData } = dataSaved;
     res.status(200).json(otherData);
@@ -63,7 +68,7 @@ const loginUser = async (req, res) => {
       if (!passwordMatch) {
         return res.status(401).json("Invalid Password");
       } else {
-        const access_token = jwt.sign({ id: user._id }, process.env.jwt_key);
+        const access_token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
         const { password, ...data } = user._doc;
         res.status(200).json({ ...data, access_token });
       }

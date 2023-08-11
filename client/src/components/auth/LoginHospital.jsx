@@ -3,24 +3,24 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import FormInput from "../FormInput";
 import { useNavigate } from "react-router-dom";
-import { useLogin } from "../hooks/useLoginHooks";
-import Spinner from "../Spinner";
-import { toast } from "react-toastify";
-import Calendar from "../Calendar";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import { useHospitalAuth } from "../hooks/useHospitalAuth";
 
-const Login = () => {
-  const { logIn, error, loading } = useLogin();
+const LoginHospital = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const handleReload = () => {
+    window.location.reload();
+  };
   const { email, password } = formData;
+  const { changeHospitalToken } = useHospitalAuth();
 
   const handleNavigate = () => {
-    navigate("/register");
+    navigate("/register-hospital");
   };
   const handleChange = (e) => {
     setFormData({
@@ -30,23 +30,26 @@ const Login = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await logIn(email, password);
-    if (error) {
-      toast.error(error);
-    }
-    if (loading) {
-      return (
-        <div className="flex content-center items-center mt-80">
-          <Spinner />
-        </div>
+    try {
+      const result = await axios.post(
+        "http://localhost:5000/api/hospitals/auth",
+        formData
       );
+      const { jwtToken } = result.data;
+      if (jwtToken) {
+        changeHospitalToken(jwtToken);
+      } else console.log("Something else happened");
+    } catch (error) {
+      console.error(error);
     }
+    if (localStorage.getItem("hospitalToken")) navigate("/hospital-home");
+    handleReload();
   };
 
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-100 flex justify-center items-center flex-col pt-48">
+      <div className="min-h-screen bg-gray-100 flex justify-center items-center">
         <div className="max-w-md p-6 bg-white rounded shadow-md w-full">
           <h1 className="w-full text-3xl font-bold text-[#068FFF] mb-7 items-center">
             {" "}
@@ -88,12 +91,10 @@ const Login = () => {
             </div>
           </form>
         </div>
-        <Calendar />
       </div>
-      <ToastContainer />
       <Footer />
     </>
   );
 };
 
-export default Login;
+export default LoginHospital;

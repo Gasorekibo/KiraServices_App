@@ -6,6 +6,7 @@ const HospitalSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
+      unique: true,
     },
     email: {
       type: String,
@@ -24,10 +25,12 @@ const HospitalSchema = new mongoose.Schema(
     password: String,
     location: String,
     status: String,
-    services: {
-      type: Array,
-      default: [],
-    },
+    services: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Service",
+      },
+    ],
     ratingsAverage: {
       type: Number,
       default: 0,

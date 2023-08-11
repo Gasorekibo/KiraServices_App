@@ -3,8 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
-  const handleClick = () => {
-    navigate("/register");
+  const handleRegisterUser = () => {
+    navigate("/register-user");
+  };
+  const handleRegisterHospital = () => {
+    navigate("/register-hospital");
   };
 
   return (
@@ -23,14 +26,14 @@ const Header = () => {
         <div className="flex content-between items-center">
           <button
             className="bg-black text-white mt-4 px-6 py-2 rounded-lg "
-            onClick={handleClick}
+            onClick={handleRegisterUser}
           >
             Sign Up As Patient
           </button>
           <p className="text-bold mx-5"> </p>
           <button
             className="bg-black text-white mt-4 px-6 py-2 rounded-lg"
-            onClick={handleClick}
+            onClick={handleRegisterHospital}
           >
             Sign Up As Hospital
           </button>

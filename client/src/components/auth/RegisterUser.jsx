@@ -3,22 +3,11 @@ import Navbar from "../Navbar";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Footer";
 import FormInput from "../FormInput";
-import { useNotification } from "../hooks";
 import { useSignUp } from "../hooks/useSignUp";
 import { toast } from "react-toastify";
 import Spinner from "../Spinner";
 
-const validateUserInfo = ({ username, email, password }) => {
-  if (!username.trim()) return { ok: false, error: "Name is missing" };
-  if (!email.trim()) return { ok: false, error: "Email is missing" };
-  if (!password.trim()) return { ok: false, error: "Password is missing" };
-  if (password.length < 6)
-    return { ok: false, error: "Password must be 6 characters long" };
-
-  return { ok: true };
-};
-
-const Register = () => {
+const RegisterUser = () => {
   const navigate = useNavigate();
   const { signUp, error, loading } = useSignUp();
   const [formData, setFormData] = useState({
@@ -60,8 +49,6 @@ const Register = () => {
     });
   };
 
-  const { updateNotification } = useNotification();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -75,10 +62,6 @@ const Register = () => {
       status,
       location
     );
-
-    const { ok, error } = validateUserInfo(formData);
-
-    if (!ok) return updateNotification("error", error);
   };
   if (error) {
     toast.error(error);
@@ -92,7 +75,7 @@ const Register = () => {
   }
 
   const handleNavigate = () => {
-    navigate("/login");
+    navigate("/login-user");
   };
 
   return (
@@ -222,4 +205,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterUser;
