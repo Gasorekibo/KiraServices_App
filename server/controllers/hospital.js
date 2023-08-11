@@ -1,9 +1,10 @@
 import Hospital from "../models/Hospital.js";
+import cloudinary from "../utils/cloudinary.js";
 import generateToken from "../utils/generateToken.js";
+import jwt from "jsonwebtoken";
 
 const registerHospital = async (req, res) => {
-  const { email, phone, name, status, location, password, services } = req.body;
-  // console.log(req.body);
+  const { email } = req.body;
 
   try {
     const hospitalExist = await Hospital.findOne({ email });
@@ -11,26 +12,20 @@ const registerHospital = async (req, res) => {
     if (hospitalExist) {
       res.status(400).json({ message: "Email already in use" });
     } else {
+      const result = await cloudinary.uploader.upload(req.file.path);
       const hospital = await Hospital.create({
-        name,
-        email,
-        phone,
-        status,
-        location,
-        password,
-        services,
+        image: result.secure_url,
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        status: req.body.status,
+        location: req.body.location,
+        password: req.body.password,
       });
       if (hospital) {
         generateToken(res, hospital._id);
-        res.status(201).json({
-          _id: hospital._id,
-          name: hospital.name,
-          email: hospital.email,
-          phone: hospital.phone,
-          status: hospital.status,
-          location: hospital.location,
-          services: hospital.services,
-        });
+        res.status(201).json({ message: "Hospital registered successfully!!" });
+        console.log(hospital.image);
       } else {
         res.status(400).json({ message: "registration failed, Try again" });
       }
@@ -60,11 +55,28 @@ const loginToHospital = async (req, res) => {
 };
 
 const getHospitalProfile = async (req, res) => {
-  const { name } = req.name;
-  const hospital = await Hospital.findOne({ name });
-  if (!hospital) return res.status(404).json({ Error: "no result found" });
+  console.log("FROM THE GET PROFILE");
+  const { token } = req.params;
+  const id = await jwt.verify(token, process.env.JWT_SECRET);
 
-  res.status(200).json(hospital);
+  try {
+    const hospital = await Hospital.findById(id.hospitalID).populate(
+      "services"
+    );
+    console.log(hospital);
+    res.status(200).json({
+      _id: hospital._id,
+      name: hospital.name,
+      status: hospital.status,
+      email: hospital.email,
+      services: hospital.services,
+      location: hospital.location,
+      image: hospital.image,
+      phone: hospital.phone,
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const updateHospitalProfile = async (req, res) => {

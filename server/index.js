@@ -1,14 +1,23 @@
 import express from "express";
 import dotenv from "dotenv";
 import userRoute from "./routes/User.js";
+import morgan from "morgan";
 import mongoose from "mongoose";
 import hospitalRoutes from "./routes/hospital.js";
-dotenv.config();
+import cors from "cors";
+import serviceRouter from "./routes/service.js";
+
+dotenv.config({ path: "./config.env" });
+
+console.log(process.env.DATABASE);
 
 const app = express();
-
 app.use(express.json());
-const port = process.env.PORT || 3000;
+app.use(express.urlencoded());
+
+app.use(cors());
+app.use(morgan("dev"));
+const port = process.env.PORT || 5000;
 // CONNECTING TO THE DATABASE
 mongoose
   .connect(process.env.DATABASE, {
@@ -22,9 +31,13 @@ mongoose
     console.log(error);
   });
 
+app.use("/api/services", serviceRouter);
+
 app.use("/api/user", userRoute);
 app.use("/api/hospitals", hospitalRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+console.log("Hello");

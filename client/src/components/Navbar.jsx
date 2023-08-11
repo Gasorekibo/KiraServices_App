@@ -3,11 +3,14 @@ import { useLogout } from "../components/hooks/useLogoutHook";
 import { Link } from "react-router-dom";
 import { AiOutlineClose, AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 import { useAuthContext } from "./hooks/useAuthHook";
+import { useHospitalAuth } from "./hooks/useHospitalAuth";
+
 const Navbar = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [nav, setNav] = useState(false);
   const { logout } = useLogout();
   const { user } = useAuthContext();
+  const { changeHospitalToken, hospitalToken } = useHospitalAuth();
 
   useEffect(() => {
     if (window.location.pathname === "/") {
@@ -46,12 +49,6 @@ const Navbar = () => {
         <div className="hidden md:flex items-center space-x-4 mr-36">
           <Link to="/" className="p-4">
             Home
-          </Link>
-          <Link to="/register" className="p-4">
-            Register
-          </Link>
-          <Link to="/login" className="p-4">
-            Login
           </Link>
         </div>
       ) : (
