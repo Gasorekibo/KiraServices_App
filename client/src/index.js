@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { HospitalAuthProvider } from "./components/context/HospitalAuthProvider";
 import { HospitalHomeProvider } from "./components/context/HospitalHomeContext";
+import { HospitalsDataProvider } from "./components/context/HospitalsDataContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,7 +17,9 @@ root.render(
       <AuthContextProvider>
         <HospitalAuthProvider>
           <HospitalHomeProvider>
-            <App />
+            <HospitalsDataProvider>
+              <App />
+            </HospitalsDataProvider>
           </HospitalHomeProvider>
         </HospitalAuthProvider>
       </AuthContextProvider>

@@ -3,14 +3,15 @@ import { useLogout } from "../components/hooks/useLogoutHook";
 import { Link } from "react-router-dom";
 import { AiOutlineClose, AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 import { useAuthContext } from "./hooks/useAuthHook";
-import { useHospitalAuth } from "./hooks/useHospitalAuth";
+import { handleSearch } from "../utils/helpers";
+import { useHospitals } from "./hooks";
 
 const Navbar = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [nav, setNav] = useState(false);
   const { logout } = useLogout();
   const { user } = useAuthContext();
-  const { changeHospitalToken, hospitalToken } = useHospitalAuth();
+  const { data, searchValue, setSearchValue } = useHospitals();
 
   useEffect(() => {
     if (window.location.pathname === "/") {
@@ -26,6 +27,14 @@ const Navbar = () => {
     window.location.reload();
   };
 
+  const handleSearchClick = () => {
+    handleSearch(data, searchValue);
+  };
+
+  const handleSearchValueChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
   return (
     <div className=" flex justify-between items-center h-24 bg-[#000300] mx-auto px-4 text-white py-2 fixed top-0 left-0 right-0 z-10 w-full">
       <div className="flex items-center justify-center">
@@ -37,10 +46,12 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Search..."
+              value={searchValue}
               className="border border-white mr-2 px-2 py-1 rounded-lg focus:outline-none focus:shadow-outline text-blue-600"
+              onChange={handleSearchValueChange}
             />
             <button>
-              <AiOutlineSearch size={25} />
+              <AiOutlineSearch size={25} onClick={handleSearchClick} />
             </button>
           </div>
         )}
