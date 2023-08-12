@@ -38,9 +38,7 @@ const HospitalPage = () => {
 
         <div className=" mt-24 text-black p-4 max-w-5xl shadow-md h-[75%] bg-grey rounded flex justify-center items-center">
           <div className=" flex flex-col gap-4">
-            <h1 className=" font-extrabold max-h-[200px] overflow-y-auto">
-              SERVICES
-            </h1>
+            <h1 className=" font-extrabold ">SERVICES</h1>
             {hospital.services.length > 0 ? (
               hospital.services.map((service) => (
                 <div key={service._id} className=" bg-blue-200 p-2 rounded">
