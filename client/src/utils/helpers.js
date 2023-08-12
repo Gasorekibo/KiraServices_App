@@ -10,9 +10,11 @@ const handleSearch = (data, searchValue) => {
               service.description === searchValue
           );
         return (
-          hospital.name === searchValue ||
-          hospital.location === searchValue ||
-          hospital.description === searchValue ||
+          hospital.name.toUpperCase() === searchValue.toUpperCase() ||
+          hospital.location
+            .toUpperCase()
+            .split("-")
+            .includes(searchValue.toUpperCase()) ||
           matchingServices
         );
       })

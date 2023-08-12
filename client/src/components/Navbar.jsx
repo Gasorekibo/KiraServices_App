@@ -11,7 +11,7 @@ const Navbar = () => {
   const [nav, setNav] = useState(false);
   const { logout } = useLogout();
   const { user } = useAuthContext();
-  const { data, searchValue, setSearchValue } = useHospitals();
+  const { data, searchValue, setSearchValue, setFilteredData } = useHospitals();
 
   useEffect(() => {
     if (window.location.pathname === "/") {
@@ -28,7 +28,7 @@ const Navbar = () => {
   };
 
   const handleSearchClick = () => {
-    handleSearch(data, searchValue);
+    setFilteredData(handleSearch(data, searchValue));
   };
 
   const handleSearchValueChange = (e) => {
