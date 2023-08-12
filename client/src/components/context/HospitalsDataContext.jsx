@@ -6,7 +6,8 @@ const HospitalsDataContext = createContext();
 const HospitalsDataProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
-  const [filteredSearch, setFilteredSearch] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [hospitalId, setHospitalId] = useState("");
 
   const fetchHospitals = async () => {
     try {
@@ -29,8 +30,10 @@ const HospitalsDataProvider = ({ children }) => {
         searchValue,
         setSearchValue,
         setData,
-        filteredSearch,
-        setFilteredSearch,
+        filteredData,
+        setFilteredData,
+        hospitalId,
+        setHospitalId,
       }}
     >
       {children}
