@@ -100,9 +100,9 @@ const HospitalHome = () => {
               />
               <button
                 type="submit"
-                className=" bg-blue-800 hover:bg-blue-700 px4 py-2 rounded"
+                className=" bg-blue-800 hover:bg-blue-700 px4 py-2 rounded text-[#F7E987]"
               >
-                create
+                Create
               </button>
             </div>
           </form>

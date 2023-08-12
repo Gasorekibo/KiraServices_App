@@ -13,7 +13,6 @@ const HospitalsDataProvider = ({ children }) => {
       const hospitals = await axios.get("http://localhost:5000/api/hospitals");
       setData(hospitals.data);
       console.log(hospitals.data);
-      console.log("Imagine");
     } catch (error) {
       console.error(error);
     }
