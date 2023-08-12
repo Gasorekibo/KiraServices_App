@@ -19,7 +19,18 @@ const Calendar = () => {
   useEffect(() => {
     async function fetchBookedEvents() {
       try {
-        const response = await fetch("/api/events/booked-events");
+        // ==================== To set value for hospital and service Id=============
+        const response = await fetch("/api/events/booked-events", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: {
+            hospitalId,
+            serviceId,
+          },
+        });
+        // =============
         if (response.ok) {
           const data = await response.json();
           setBookedEvents(data);
@@ -47,6 +58,8 @@ const Calendar = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // ==================== To set value for hospital and service Id=============
+
     try {
       const response = await fetch("/api/events/create-event", {
         method: "POST",
@@ -58,6 +71,8 @@ const Calendar = () => {
           description: eventData.description,
           startTime: eventData.startTime,
           endTime: eventData.endTime,
+          hospitalId: "",
+          serviceId: "",
         }),
       });
 
@@ -74,6 +89,8 @@ const Calendar = () => {
           description: "",
           startTime: "",
           endTime: "",
+          bookedHospital: "",
+          bookedService: "",
         });
       }
     } catch (error) {
