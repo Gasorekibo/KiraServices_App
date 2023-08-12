@@ -23,6 +23,7 @@ const registerHospital = async (req, res) => {
         password: req.body.password,
       });
       if (hospital) {
+        console.log(res);
         const token = generateToken(res, hospital._id);
         res.status(201).json({ jwtToken: token });
         console.log(hospital.image);

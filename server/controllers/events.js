@@ -1,7 +1,9 @@
 import Event from "../models/CalendarEvent.js";
+import Hospital from "../models/Hospital.js";
 
 const createEvent = async (req, res) => {
-  const { title, description, startTime, endTime } = req.body;
+  const { title, description, startTime, endTime, hospitalId, serviceId } =
+    req.body;
 
   if (new Date(endTime) < new Date(startTime)) {
     return res
@@ -37,6 +39,8 @@ const createEvent = async (req, res) => {
       description,
       startTime,
       endTime,
+      bookedHospital: hospitalId,
+      bookedService: serviceId,
     });
 
     if (event) {
@@ -46,6 +50,8 @@ const createEvent = async (req, res) => {
         description: event.description,
         startTime: event.startTime,
         endTime: event.endTime,
+        bookedHospital: event.bookedHospital,
+        bookedService: event.bookedService,
       });
     } else {
       return res.status(400).json({ error: "Event creationg Fails try Again" });
@@ -57,8 +63,14 @@ const createEvent = async (req, res) => {
 };
 
 const getBookedEvent = async (req, res) => {
+  console.log(req.body);
+  const { hospitalId, serviceId } = req.body;
+  console.log(hospitalId, serviceId);
   try {
-    const bookedEvents = await Event.find({});
+    const bookedEvents = await Event.find({
+      bookedHospital: hospitalId,
+      bookedService: serviceId,
+    });
     res.status(200).json(bookedEvents);
   } catch (error) {
     console.error("Error fetching booked events:", error);
