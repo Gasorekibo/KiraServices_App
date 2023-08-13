@@ -48,18 +48,12 @@ const Calendar = () => {
 
     fetchBookedEvents();
   }, [selectedDate, serviceId, hospitalId, navigate]);
-
-  // const handleBack = () => {
-  //   window.location.reload();
-  // };
   const handleChange = (event) => {
     setEventData((prevData) => ({
       ...prevData,
       [event.target.name]: event.target.value,
     }));
   };
-
-  console.log(hospitalId);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
