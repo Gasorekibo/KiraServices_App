@@ -23,10 +23,8 @@ const registerHospital = async (req, res) => {
         password: req.body.password,
       });
       if (hospital) {
-        console.log(res);
         const token = generateToken(res, hospital._id);
         res.status(201).json({ jwtToken: token });
-        console.log(hospital.image);
       } else {
         res.status(400).json({ message: "registration failed, Try again" });
       }
@@ -63,7 +61,7 @@ const getHospitalProfile = async (req, res) => {
     const hospital = await Hospital.findById(id.hospitalID).populate(
       "services"
     );
-    console.log(hospital);
+
     res.status(200).json({
       _id: hospital._id,
       name: hospital.name,
