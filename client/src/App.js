@@ -8,6 +8,7 @@ import HospitalHome from "./components/HospitalHome";
 import HospitalPage from "./components/HospitalPage";
 import CalendarPage from "./components/CalendarPage";
 import ViewBookedEvents from "./components/ViewBookedEvents";
+import NotFoundPage from "./components/NotFoundPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/hospital" element={<HospitalPage />} />
         <Route path="/booking-calendar" element={<CalendarPage />} />
         <Route path="/hospital-home/schedules" element={<ViewBookedEvents />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );

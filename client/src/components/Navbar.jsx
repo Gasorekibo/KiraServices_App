@@ -212,7 +212,7 @@ const Navbar = () => {
               Home
             </Link>
             {user ? (
-              <Link to="/logout" className="p-4" onClick={handleLogout}>
+              <Link to="/" className="p-4" onClick={handleLogout}>
                 Logout
               </Link>
             ) : (
@@ -264,7 +264,7 @@ const Navbar = () => {
           {user && (
             <Link
               onClick={handleLogout}
-              to="/logout"
+              to="/"
               className="p-4 border-b border-gray-600 rounded-sm hover:font-bold hover:text-2xl w-full px-4"
             >
               Logout

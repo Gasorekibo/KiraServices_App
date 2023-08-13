@@ -77,13 +77,13 @@ const RegisterUser = () => {
   if (error) {
     toast.error(error);
   }
-  if (loading) {
-    return (
-      <div className="flex content-center items-center mt-80">
-        <Spinner />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="flex content-center items-center mt-80">
+  //       <Spinner />
+  //     </div>
+  //   );
+  // }
 
   const handleNavigate = () => {
     navigate("/login-user");
@@ -95,9 +95,13 @@ const RegisterUser = () => {
       <div className="min-h-screen bg-gray-100 flex justify-center items-center mt-16">
         <div className="max-w-md p-6 bg-white rounded shadow-md w-full">
           <h1 className="w-full text-2xl font-bold text-[#068FFF] mb-6 pl-14 items-center">
-            {" "}
             Register Kira Services
           </h1>
+          {loading && (
+            <div className="flex content-center items-center z-20  h-full py-[50%] ">
+              <Spinner />
+            </div>
+          )}
           <form onSubmit={handleSubmit}>
             <FormInput
               name="username"
@@ -142,6 +146,7 @@ const RegisterUser = () => {
                 )
               }
             />
+
             <FormInput
               name="confirmPassword"
               placeholder="******"
@@ -192,7 +197,7 @@ const RegisterUser = () => {
               onChange={handleChange}
             />
 
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between mt-6">
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
