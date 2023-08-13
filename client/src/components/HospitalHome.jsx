@@ -352,8 +352,7 @@ const HospitalHome = () => {
         `http://localhost:5000/api/events/${hospitalInfo._id}`
       );
       sessionStorage.setItem("schedules", JSON.stringify(schedules.data));
-      console.log("FROM HOSPITAL HOME");
-      navigate("/hospital-home/schedules");
+      if (schedules.data.length > 0) navigate("/hospital-home/schedules");
     } catch (error) {
       console.error(error);
     }
