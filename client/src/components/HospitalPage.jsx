@@ -18,8 +18,8 @@ const HospitalPage = () => {
   return (
     <>
       <Navbar />
-      <div className=" grid grid-cols-2 h-screen justify-center items-center gap-8 p-4">
-        <div className=" mt-24 text-black p-4 max-w-5xl shadow-md h-[75%] bg-grey rounded flex justify-center items-center">
+      <div className=" grid grid-cols-1 md:grid-cols-2 h-screen justify-center items-center gap-4 md:gap-8 p-4">
+        <div className=" mt-20 md:mt-24 text-black p-4 max-w-5xl shadow-md h-[75%] bg-grey rounded flex justify-center items-center">
           <div className=" block p-2">
             <div className="">
               <img
@@ -36,25 +36,28 @@ const HospitalPage = () => {
           </div>
         </div>
 
-        <div className=" mt-24 text-black p-4 max-w-5xl shadow-md h-[75%] bg-grey rounded flex justify-center items-center">
-          <div className=" flex flex-col gap-4">
-            <h1 className=" font-extrabold ">SERVICES</h1>
-            {hospital.services.length > 0 ? (
-              hospital.services.map((service) => (
-                <div key={service._id} className=" bg-blue-200 p-2 rounded">
-                  <h2>
-                    <span className=" font-bold text-yellow-800">Name</span>:{" "}
-                    {service.name}
-                  </h2>
-                  <p>
-                    <span className=" font-bold">Description</span>:{" "}
-                    {service.description}
-                  </p>
-                </div>
-              ))
-            ) : (
-              <h1 className=" text-center">No services available</h1>
-            )}
+        <div className=" mt-0 md:mt-24 text-black p-4 max-w-5xl shadow-md h-[75%] bg-grey rounded flex justify-center items-center">
+          <div className=" flex flex-col gap-4 items-center justify-center">
+            <div className="flex flex-col gap-4 items-center justify-center">
+              <h1 className="font-extrabold">SERVICES</h1>
+              <div className=" flex gap-4 max-h-[400px] overflow-y-auto flex-col">
+                {hospital.services && hospital.services.length > 0 ? (
+                  hospital.services.map((service) => (
+                    <div key={service._id} className=" bg-blue-300 rounded p-4">
+                      <h2>
+                        <span className=" font-bold">Name:</span> {service.name}
+                      </h2>
+                      <p>
+                        <span className=" font-bold">Description:</span>{" "}
+                        {service.description}
+                      </p>
+                    </div>
+                  ))
+                ) : (
+                  <h1 className="text-center">No services available</h1>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>

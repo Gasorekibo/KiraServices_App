@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import Calendar from "../Calendar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 
 const LoginUser = () => {
   const { logIn, error, loading } = useLogin();
@@ -17,6 +18,13 @@ const LoginUser = () => {
     email: "",
     password: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   const { email, password } = formData;
 
   const handleNavigate = () => {
@@ -64,12 +72,28 @@ const LoginUser = () => {
             />
             <FormInput
               name="password"
-              type="password"
               placeholder="******"
               label="Password"
               value={password}
               onChange={handleChange}
               required
+              type={showPassword ? "text" : "password"}
+              showIcon={true}
+              icon={
+                showPassword ? (
+                  <BiSolidHide
+                    size={20}
+                    onClick={handleShowPassword}
+                    className="text-gray-400 cursor-pointer"
+                  />
+                ) : (
+                  <BiSolidShow
+                    size={20}
+                    onClick={handleShowPassword}
+                    className="text-gray-400 cursor-pointer"
+                  />
+                )
+              }
             />
 
             <div className="flex items-center justify-between">

@@ -27,6 +27,12 @@ const Navbar = () => {
     window.location.reload();
   };
 
+  const handleSearchInputKeyDown = (e) => {
+    if (e.key === "Enter") {
+      setFilteredData(handleSearch(data, searchValue));
+    }
+  };
+
   const handleSearchClick = () => {
     setFilteredData(handleSearch(data, searchValue));
   };
@@ -49,6 +55,7 @@ const Navbar = () => {
               value={searchValue}
               className="border border-white mr-2 px-2 py-1 rounded-lg focus:outline-none focus:shadow-outline text-blue-600"
               onChange={handleSearchValueChange}
+              onKeyDown={handleSearchInputKeyDown}
             />
             <button>
               <AiOutlineSearch size={25} onClick={handleSearchClick} />

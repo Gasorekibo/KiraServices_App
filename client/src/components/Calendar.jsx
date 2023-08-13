@@ -20,16 +20,7 @@ const Calendar = () => {
     async function fetchBookedEvents() {
       try {
         // ==================== To set value for hospital and service Id=============
-        const response = await fetch("/api/events/booked-events", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: {
-            hospitalId,
-            serviceId,
-          },
-        });
+        const response = await fetch("/api/events/booked-events", {});
         // =============
         if (response.ok) {
           const data = await response.json();

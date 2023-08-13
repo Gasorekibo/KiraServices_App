@@ -8,6 +8,7 @@ const HospitalsDataProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [hospitalId, setHospitalId] = useState("");
+  const [scheduledEvents, setScheduledEvents] = useState([]);
 
   const fetchHospitals = async () => {
     try {
@@ -34,6 +35,8 @@ const HospitalsDataProvider = ({ children }) => {
         setFilteredData,
         hospitalId,
         setHospitalId,
+        scheduledEvents,
+        setScheduledEvents,
       }}
     >
       {children}
