@@ -5,7 +5,6 @@ import { BiArrowBack } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
 const Calendar = () => {
-  // const { hospitalId, serviceId } = useHospitals();
   const hospitalId = localStorage.getItem("visitedHospitalId");
   const serviceId = localStorage.getItem("serviceId");
   const [loading, setLoading] = useState(false);

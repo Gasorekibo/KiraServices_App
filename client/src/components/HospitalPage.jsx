@@ -7,6 +7,7 @@ const HospitalPage = () => {
   const { data, setServiceId } = useHospitals();
   const hospitalId = localStorage.getItem("visitedHospitalId");
   const hospital = data.filter((hospital) => hospital._id === hospitalId)[0];
+  console.log(hospital.services);
 
   if (!hospitalId) navigate("/");
 
@@ -19,6 +20,7 @@ const HospitalPage = () => {
     setServiceId(serviceId);
     localStorage.setItem("serviceId", serviceId);
     navigate("/booking-calendar");
+    console.log(hospital);
   };
 
   console.log(hospital);
@@ -60,6 +62,12 @@ const HospitalPage = () => {
                         <span className=" font-bold">Description:</span>{" "}
                         {service.description}
                       </p>
+                      <span
+                        className=" cursor-pointer mt-2 font-bold text-[#4E4FEB] float-right text-sm"
+                        onClick={() => handleBookNow(service._id)}
+                      >
+                        Book Now
+                      </span>
                     </div>
                   ))
                 ) : (

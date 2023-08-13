@@ -143,30 +143,6 @@ const RegisterHospital = () => {
                 onChange={handleEmailChange}
                 required
               />
-              {/* <FormInput
-                name="password"
-                type="password"
-                placeholder="******"
-                label="Password"
-                value={password}
-                onChange={handlePasswordChange}
-                required
-                icon={
-                showPassword ? (
-                  <BiSolidShow
-                    size={20}
-                    onClick={handleShowPassword}
-                    className="cursor-pointer"
-                  />
-                ) : (
-                  <BiSolidHide
-                    size={20}
-                    onClick={handleShowPassword}
-                    className="text-gray-400 cursor-pointer fill-black"
-                  />
-                )
-              }
-            /> */}
 
               <FormInput
                 name="password"
