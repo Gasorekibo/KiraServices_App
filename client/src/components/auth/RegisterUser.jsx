@@ -6,6 +6,7 @@ import FormInput from "../FormInput";
 import { useSignUp } from "../hooks/useSignUp";
 import { toast } from "react-toastify";
 import Spinner from "../Spinner";
+import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 
 const RegisterUser = () => {
   const navigate = useNavigate();
@@ -20,6 +21,18 @@ const RegisterUser = () => {
 
     location: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const handleShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
+
+  const handleShowConfirmPassword = () => {
+    setShowConfirmPassword((prev) => !prev);
+  };
+
   const {
     username,
     email,
@@ -106,20 +119,52 @@ const RegisterUser = () => {
             />
             <FormInput
               name="password"
-              type="password"
               placeholder="******"
               label="Password"
               value={password}
               onChange={handleChange}
               required
+              type={showPassword ? "text" : "password"}
+              showIcon={true}
+              icon={
+                showPassword ? (
+                  <BiSolidHide
+                    size={20}
+                    onClick={handleShowPassword}
+                    className="text-gray-400 cursor-pointer"
+                  />
+                ) : (
+                  <BiSolidShow
+                    size={20}
+                    onClick={handleShowPassword}
+                    className="text-gray-400 cursor-pointer"
+                  />
+                )
+              }
             />
             <FormInput
               name="confirmPassword"
               placeholder="******"
-              type="password"
               label="ConfirmPassword"
               value={confirmPassword}
               onChange={handleChange}
+              type={showConfirmPassword ? "text" : "password"}
+              showIcon={true}
+              icon={
+                showConfirmPassword ? (
+                  <BiSolidHide
+                    size={20}
+                    onClick={handleShowConfirmPassword}
+                    className="text-gray-400 cursor-pointer"
+                  />
+                ) : (
+                  <BiSolidShow
+                    size={20}
+                    onClick={handleShowConfirmPassword}
+                    className="text-gray-400 cursor-pointer"
+                  />
+                )
+              }
             />
             <FormInput
               name="phoneNumber"

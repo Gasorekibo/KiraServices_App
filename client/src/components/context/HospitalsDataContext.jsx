@@ -8,6 +8,7 @@ const HospitalsDataProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [hospitalId, setHospitalId] = useState("");
+  const [scheduledEvents, setScheduledEvents] = useState([]);
   const [showCalendar, setShowCalendar] = useState(false);
   const [serviceId, setServiceId] = useState("");
   const [showRegistration, setShowRegistration] = useState(false);
@@ -36,6 +37,8 @@ const HospitalsDataProvider = ({ children }) => {
         setFilteredData,
         hospitalId,
         setHospitalId,
+        scheduledEvents,
+        setScheduledEvents,
         showCalendar,
         setShowCalendar,
         serviceId,

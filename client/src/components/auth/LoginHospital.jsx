@@ -4,6 +4,7 @@ import Footer from "../Footer";
 import FormInput from "../FormInput";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 
 const LoginHospital = () => {
   const navigate = useNavigate();
@@ -11,6 +12,12 @@ const LoginHospital = () => {
     email: "",
     password: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   const handleReload = () => {
     window.location.reload();
@@ -65,12 +72,28 @@ const LoginHospital = () => {
             />
             <FormInput
               name="password"
-              type="password"
               placeholder="******"
               label="Password"
               value={password}
               onChange={handleChange}
               required
+              type={showPassword ? "text" : "password"}
+              showIcon={true}
+              icon={
+                showPassword ? (
+                  <BiSolidHide
+                    size={20}
+                    onClick={handleShowPassword}
+                    className="text-gray-400 cursor-pointer"
+                  />
+                ) : (
+                  <BiSolidShow
+                    size={20}
+                    onClick={handleShowPassword}
+                    className="text-gray-400 cursor-pointer"
+                  />
+                )
+              }
             />
 
             <div className="flex items-center justify-between">

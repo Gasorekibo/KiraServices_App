@@ -7,6 +7,7 @@ import RegisterUser from "./components/auth/RegisterUser";
 import HospitalHome from "./components/HospitalHome";
 import HospitalPage from "./components/HospitalPage";
 import CalendarPage from "./components/CalendarPage";
+import ViewBookedEvents from "./components/ViewBookedEvents";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/hospital-home" element={<HospitalHome />} />
         <Route path="/hospital" element={<HospitalPage />} />
         <Route path="/booking-calendar" element={<CalendarPage />} />
+        <Route path="/hospital-home/schedules" element={<ViewBookedEvents />} />
       </Routes>
     </div>
   );

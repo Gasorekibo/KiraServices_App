@@ -79,4 +79,18 @@ const getBookedEvent = async (req, res) => {
     res.status(500).json({ error: "Error fetching booked events." });
   }
 };
-export { createEvent, getBookedEvent };
+
+const getHospitalBookedEvents = async (req, res) => {
+  const { hospitalId } = req.params;
+
+  try {
+    const scheduledEvents = await Event.find({
+      bookedHospital: hospitalId,
+    }).populate("bookedService");
+    res.status(200).json(scheduledEvents);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ err: error });
+  }
+};
+export { createEvent, getBookedEvent, getHospitalBookedEvents };
