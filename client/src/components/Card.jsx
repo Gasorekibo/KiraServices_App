@@ -29,16 +29,17 @@ const Card = ({ data }) => {
 
   const handleVisitHospital = (id) => {
     setHospitalId(id);
+    localStorage.setItem("visitedHospitalId", id);
     if (!localStorage.getItem("user")) navigate("/register-user");
     else navigate("/hospital");
   };
   return (
-    <div className=" bg-white rounded-lg shadow-lg overflow-hidden mt-0">
+    <div className=" bg-white rounded-lg shadow-lg overflow-hidden mt-3">
       <div className="relative">
         <img
           src={data.image}
           alt={data.name}
-          className="object-cover w-full h-48  "
+          className="object-cover w-full h-48"
         />
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>
         <div className="absolute bottom-0 left-0 p-4">

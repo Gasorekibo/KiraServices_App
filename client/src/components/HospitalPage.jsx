@@ -4,13 +4,22 @@ import Navbar from "./Navbar";
 
 const HospitalPage = () => {
   const navigate = useNavigate();
-  const { data, hospitalId } = useHospitals();
+  const { data, setServiceId } = useHospitals();
+  const hospitalId = localStorage.getItem("visitedHospitalId");
   const hospital = data.filter((hospital) => hospital._id === hospitalId)[0];
+
+  if (!hospitalId) navigate("/");
 
   if (!hospital) {
     navigate("/");
     return;
   }
+
+  const handleBookNow = (serviceId) => {
+    setServiceId(serviceId);
+    localStorage.setItem("serviceId", serviceId);
+    navigate("/booking-calendar");
+  };
 
   console.log(hospital);
   console.log(hospital.status);
@@ -36,22 +45,31 @@ const HospitalPage = () => {
           </div>
         </div>
 
-        <div className=" mt-24 text-black p-4 max-w-5xl shadow-md h-[75%] bg-grey rounded flex justify-center items-center">
-          <div className=" flex flex-col gap-4">
-            <h1 className=" font-extrabold max-h-[200px] overflow-y-auto">
-              SERVICES
-            </h1>
+        <div className=" mt-24 text-black flex-col gap-4 p-4 max-w-5xl shadow-md h-[75%] bg-grey rounded flex justify-center items-center">
+          <h1 className=" font-extrabold max-h-[200px] overflow-y-auto">
+            SERVICES
+          </h1>
+          <div className=" grid grid-cols-3 gap-4">
             {hospital.services.length > 0 ? (
               hospital.services.map((service) => (
                 <div key={service._id} className=" bg-blue-200 p-2 rounded">
-                  <h2>
-                    <span className=" font-bold text-yellow-800">Name</span>:{" "}
-                    {service.name}
-                  </h2>
-                  <p>
-                    <span className=" font-bold">Description</span>:{" "}
-                    {service.description}
-                  </p>
+                  <div>
+                    <h2>
+                      <span className=" font-bold text-yellow-800">Name</span>:{" "}
+                      {service.name}
+                    </h2>
+                    <p>
+                      <span className=" font-bold">Description</span>:{" "}
+                      {service.description}
+                    </p>
+                    <span
+                      className=" cursor-pointer mt-2 font-bold text-[#4E4FEB] float-right
+                      text-sm"
+                      onClick={() => handleBookNow(service._id)}
+                    >
+                      Book Now
+                    </span>
+                  </div>
                 </div>
               ))
             ) : (

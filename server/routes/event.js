@@ -5,6 +5,6 @@ import { createEvent, getBookedEvent } from "../controllers/events.js";
 
 const router = express.Router();
 router.post("/create-event", createEvent);
-router.get("/booked-events", getBookedEvent);
+router.get("/booked-events/:hospitalId/:serviceId", getBookedEvent);
 
 export default router;

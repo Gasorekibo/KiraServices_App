@@ -12,7 +12,6 @@ const HospitalHomeProvider = ({ children }) => {
     );
 
     setHospitalInfo(res.data);
-    console.log(res.data);
   };
   useEffect(() => {
     const hospitalToken = localStorage.getItem("hospitalToken");

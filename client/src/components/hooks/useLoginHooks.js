@@ -31,7 +31,7 @@ export const useLogin = () => {
       if (response.ok) {
         toast.success("User Login Sucessfully");
         localStorage.setItem("user", JSON.stringify(data));
-        // update the auth Context.
+
         dispatch({ type: "LOGIN", payload: data });
         setLoading(false);
       }

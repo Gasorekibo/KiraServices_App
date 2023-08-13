@@ -8,12 +8,14 @@ const HospitalsDataProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [hospitalId, setHospitalId] = useState("");
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [serviceId, setServiceId] = useState("");
+  const [showRegistration, setShowRegistration] = useState(false);
 
   const fetchHospitals = async () => {
     try {
       const hospitals = await axios.get("http://localhost:5000/api/hospitals");
       setData(hospitals.data);
-      console.log(hospitals.data);
     } catch (error) {
       console.error(error);
     }
@@ -34,6 +36,12 @@ const HospitalsDataProvider = ({ children }) => {
         setFilteredData,
         hospitalId,
         setHospitalId,
+        showCalendar,
+        setShowCalendar,
+        serviceId,
+        setServiceId,
+        showRegistration,
+        setShowRegistration,
       }}
     >
       {children}
