@@ -58,7 +58,6 @@ const LoginUser = () => {
       <div className="min-h-screen bg-gray-100 flex justify-center items-center flex-col pt-48">
         <div className="max-w-md p-6 bg-white rounded shadow-md w-full">
           <h1 className="w-full text-3xl font-bold text-[#068FFF] mb-7 items-center">
-            {" "}
             Login Kira Services
           </h1>
           <form onSubmit={handleSubmit}>

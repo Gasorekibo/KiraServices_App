@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthHook";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const useSignUp = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { dispatch } = useAuthContext();
+  const navigate = useNavigate();
 
   const signUp = async (
     username,
@@ -44,9 +46,9 @@ export const useSignUp = () => {
       }
       if (response.ok) {
         toast.success("User Registered Sucessfully");
-        // Store to local storage
+
         localStorage.setItem("user", JSON.stringify(data));
-        // update the auth Context.
+        navigate("/");
         dispatch({ type: "LOGIN", payload: data });
         setLoading(false);
       }

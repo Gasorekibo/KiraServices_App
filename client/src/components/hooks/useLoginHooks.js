@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthHook";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const useLogin = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { dispatch } = useAuthContext();
+  const navigate = useNavigate();
 
   const logIn = async (email, password) => {
     setLoading(true);
@@ -34,6 +36,7 @@ export const useLogin = () => {
 
         dispatch({ type: "LOGIN", payload: data });
         setLoading(false);
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
