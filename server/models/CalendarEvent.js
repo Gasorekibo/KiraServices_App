@@ -10,6 +10,7 @@ const eventSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Hospital",
     },
+    patient: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     bookedService: { type: mongoose.Schema.Types.ObjectId, ref: "Service" },
   },
   { timestamps: true }

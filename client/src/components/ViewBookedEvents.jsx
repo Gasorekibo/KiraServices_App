@@ -98,9 +98,17 @@ const ViewBookedEvents = () => {
                     <span className="text-black">endTime:</span>{" "}
                     {schedule.endTime}
                   </p>
-                  <p>
+                  <p className="border-b-gray-400 border-b-2">
                     <span className="text-black">Description:</span>{" "}
                     {schedule.description}
+                  </p>
+                  <p className="border-b-gray-400 border-b-2">
+                    <span className=" text-black">Patient's Name: </span>
+                    {schedule.patient.username}
+                  </p>
+                  <p>
+                    <span className=" text-black">Patient's Email: </span>
+                    {schedule.patient.email}
                   </p>
                 </div>
               ))}

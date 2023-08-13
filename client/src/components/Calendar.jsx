@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 const Calendar = () => {
   const hospitalId = localStorage.getItem("visitedHospitalId");
   const serviceId = localStorage.getItem("serviceId");
+  const userItem = localStorage.getItem("user");
+  const userId = userItem ? JSON.parse(userItem)._id : null;
   const [loading, setLoading] = useState(false);
   const [bookedEvents, setBookedEvents] = useState([]);
   const [eventData, setEventData] = useState({
@@ -56,9 +58,9 @@ const Calendar = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(userId);
 
     try {
-      console.log(serviceId);
       const response = await fetch("/api/events/create-event", {
         method: "POST",
         headers: {
@@ -71,6 +73,7 @@ const Calendar = () => {
           endTime: eventData.endTime,
           hospitalId: hospitalId,
           serviceId: serviceId,
+          userId: userId,
         }),
       });
 

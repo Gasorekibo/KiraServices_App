@@ -1,8 +1,17 @@
 import Event from "../models/CalendarEvent.js";
+import User from "../models/User.js";
+import jwt from "jsonwebtoken";
 
 const createEvent = async (req, res) => {
-  const { title, description, startTime, endTime, hospitalId, serviceId } =
-    req.body;
+  const {
+    title,
+    description,
+    startTime,
+    endTime,
+    hospitalId,
+    serviceId,
+    userId,
+  } = req.body;
   console.log("FROM FRONTED");
   console.log(req.body);
 
@@ -41,6 +50,7 @@ const createEvent = async (req, res) => {
       endTime,
       bookedHospital: hospitalId,
       bookedService: serviceId,
+      patient: userId,
     });
 
     if (event) {
@@ -86,7 +96,9 @@ const getHospitalBookedEvents = async (req, res) => {
   try {
     const scheduledEvents = await Event.find({
       bookedHospital: hospitalId,
-    }).populate("bookedService");
+    })
+      .populate("bookedService")
+      .populate("patient");
     res.status(200).json(scheduledEvents);
   } catch (error) {
     console.error(error);

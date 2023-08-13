@@ -353,6 +353,7 @@ const HospitalHome = () => {
       );
       sessionStorage.setItem("schedules", JSON.stringify(schedules.data));
       if (schedules.data.length > 0) navigate("/hospital-home/schedules");
+      console.log(schedules.data);
     } catch (error) {
       console.error(error);
     }
