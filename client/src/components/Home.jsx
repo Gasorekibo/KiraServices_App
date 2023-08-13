@@ -8,9 +8,6 @@ import { useHospitals } from "./hooks";
 const Home = () => {
   const { data, filteredData } = useHospitals();
 
-  console.log("From Home ...");
-  console.log(filteredData);
-
   const shuffleArray = (array) => {
     const shuffled = array.slice();
     for (let i = shuffled.length - 1; i > 0; i--) {

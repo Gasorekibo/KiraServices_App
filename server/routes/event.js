@@ -10,6 +10,6 @@ import {
 const router = express.Router();
 router.get("/:hospitalId", getHospitalBookedEvents);
 router.post("/create-event", createEvent);
-router.get("/booked-events", getBookedEvent);
+router.get("/booked-events/:hospitalId/:serviceId", getBookedEvent);
 
 export default router;

@@ -1,9 +1,10 @@
 import Event from "../models/CalendarEvent.js";
-import Hospital from "../models/Hospital.js";
 
 const createEvent = async (req, res) => {
   const { title, description, startTime, endTime, hospitalId, serviceId } =
     req.body;
+  console.log("FROM FRONTED");
+  console.log(req.body);
 
   if (new Date(endTime) < new Date(startTime)) {
     return res
@@ -12,7 +13,6 @@ const createEvent = async (req, res) => {
   }
 
   try {
-    // Check if there are any events overlapping with the given date range
     const overlappingEvent = await Event.findOne({
       $or: [
         {
@@ -58,13 +58,15 @@ const createEvent = async (req, res) => {
     }
   } catch (err) {
     res.status(400).json({ error: "Event creation failed" });
-    console.log(err);
+    console.log(err.message);
   }
 };
 
 const getBookedEvent = async (req, res) => {
-  console.log(req.body);
-  const { hospitalId, serviceId } = req.body;
+  console.log(req.params);
+  console.log("this is from frontEnd");
+  const hospitalId = req.params.hospitalId;
+  const serviceId = req.params.serviceId;
   console.log(hospitalId, serviceId);
   try {
     const bookedEvents = await Event.find({

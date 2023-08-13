@@ -4,13 +4,22 @@ import Navbar from "./Navbar";
 
 const HospitalPage = () => {
   const navigate = useNavigate();
-  const { data, hospitalId } = useHospitals();
+  const { data, setServiceId } = useHospitals();
+  const hospitalId = localStorage.getItem("visitedHospitalId");
   const hospital = data.filter((hospital) => hospital._id === hospitalId)[0];
+
+  if (!hospitalId) navigate("/");
 
   if (!hospital) {
     navigate("/");
     return;
   }
+
+  const handleBookNow = (serviceId) => {
+    setServiceId(serviceId);
+    localStorage.setItem("serviceId", serviceId);
+    navigate("/booking-calendar");
+  };
 
   console.log(hospital);
   console.log(hospital.status);

@@ -4,9 +4,10 @@ import Footer from "../Footer";
 import FormInput from "../FormInput";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../hooks/useLoginHooks";
+
 import Spinner from "../Spinner";
 import { toast } from "react-toastify";
-import Calendar from "../Calendar";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BiSolidHide, BiSolidShow } from "react-icons/bi";
@@ -112,7 +113,6 @@ const LoginUser = () => {
             </div>
           </form>
         </div>
-        <Calendar />
       </div>
       <ToastContainer />
       <Footer />

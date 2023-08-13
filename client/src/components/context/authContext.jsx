@@ -30,8 +30,7 @@ export const AuthContextProvider = ({ children }) => {
       dispatch({ type: "LOGIN", payload: user });
     }
   }, []);
-  // ======
-  console.log("the status of user", state);
+
   return (
     <authContext.Provider value={{ ...state, dispatch }}>
       {children}

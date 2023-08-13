@@ -7,6 +7,8 @@ import { useSignUp } from "../hooks/useSignUp";
 import { toast } from "react-toastify";
 import Spinner from "../Spinner";
 import axios from "axios";
+import VerifyHospitalRegistration from "../VerifyHospitalRegistration";
+import { useHospitals } from "../hooks";
 import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 
 const RegisterHospital = () => {
@@ -21,6 +23,7 @@ const RegisterHospital = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [location, setLocation] = useState("");
   const [status, setStatus] = useState("");
+  const { showRegistration } = useHospitals();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -66,7 +69,7 @@ const RegisterHospital = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("signing up ...");
+
     const formData = new FormData();
     formData.append("name", username);
     formData.append("email", email);
@@ -84,19 +87,20 @@ const RegisterHospital = () => {
       localStorage.setItem("hospitalToken", response.data.jwtToken);
       navigate("/hospital-home");
       handleReload();
+      toast.success("Hospital Registered Successfully");
     } catch (error) {
-      console.error(error);
+      toast.error(error.response.data.message);
     }
   };
-  if (error) {
-    toast.error(error);
-  }
   if (loading) {
     return (
       <div className="flex content-center items-center mt-80">
         <Spinner />
       </div>
     );
+  }
+  if (error) {
+    toast.error(error);
   }
 
   const handleNavigate = () => {
@@ -111,40 +115,43 @@ const RegisterHospital = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-100 flex justify-center items-center mt-16">
-        <div className="max-w-md p-6 bg-white rounded shadow-md w-full">
-          <h1 className="w-full text-2xl font-bold text-[#068FFF] mb-6 pl-14 items-center">
-            {" "}
-            RegisterHospital Kira Services
-          </h1>
-          <form onSubmit={handleSubmit}>
-            <FormInput
-              name="username"
-              type="text"
-              placeholder="Enter your username"
-              label="Username"
-              value={username}
-              onChange={handleNameChange}
-              required
-            />
-            <FormInput
-              name="email"
-              type="email"
-              placeholder="gasore@gmail.com"
-              label="Email"
-              value={email}
-              onChange={handleEmailChange}
-              required
-            />
-            {/* <FormInput
-              name="password"
-              type="password"
-              placeholder="******"
-              label="Password"
-              value={password}
-              onChange={handlePasswordChange}
-              required
-              icon={
+
+      <div className="min-h-screen  flex bg-gray-100 items-baseline xl:mt-16 xl:pt-6 xl:justify-items-stretch">
+        {!showRegistration ? (
+          <VerifyHospitalRegistration />
+        ) : (
+          <div className="max-w-md p-6 bg-white rounded shadow-md w-full xl:ml-96">
+            <h1 className="w-full text-2xl font-bold text-[#068FFF] mb-6 pl-14 items-center">
+              RegisterHospital Kira Services
+            </h1>
+            <form onSubmit={handleSubmit}>
+              <FormInput
+                name="username"
+                type="text"
+                placeholder="Enter your username"
+                label="Username"
+                value={username}
+                onChange={handleNameChange}
+                required
+              />
+              <FormInput
+                name="email"
+                type="email"
+                placeholder="gasore@gmail.com"
+                label="Email"
+                value={email}
+                onChange={handleEmailChange}
+                required
+              />
+              {/* <FormInput
+                name="password"
+                type="password"
+                placeholder="******"
+                label="Password"
+                value={password}
+                onChange={handlePasswordChange}
+                required
+                icon={
                 showPassword ? (
                   <BiSolidShow
                     size={20}
@@ -161,108 +168,108 @@ const RegisterHospital = () => {
               }
             /> */}
 
-            <FormInput
-              name="password"
-              placeholder="******"
-              label="Password"
-              value={password}
-              onChange={handlePasswordChange}
-              required
-              type={showPassword ? "text" : "password"}
-              showIcon={true}
-              icon={
-                showPassword ? (
-                  <BiSolidHide
-                    size={20}
-                    onClick={handleShowPassword}
-                    className="text-gray-400 cursor-pointer"
-                  />
-                ) : (
-                  <BiSolidShow
-                    size={20}
-                    onClick={handleShowPassword}
-                    className="text-gray-400 cursor-pointer"
-                  />
-                )
-              }
-            />
+              <FormInput
+                name="password"
+                placeholder="******"
+                label="Password"
+                value={password}
+                onChange={handlePasswordChange}
+                required
+                type={showPassword ? "text" : "password"}
+                showIcon={true}
+                icon={
+                  showPassword ? (
+                    <BiSolidHide
+                      size={20}
+                      onClick={handleShowPassword}
+                      className="text-gray-400 cursor-pointer"
+                    />
+                  ) : (
+                    <BiSolidShow
+                      size={20}
+                      onClick={handleShowPassword}
+                      className="text-gray-400 cursor-pointer"
+                    />
+                  )
+                }
+              />
 
-            <FormInput
-              name="confirmPassword"
-              placeholder="******"
-              label="ConfirmPassword"
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
-              type={showConfirmPassword ? "text" : "password"}
-              showIcon={true}
-              icon={
-                showConfirmPassword ? (
-                  <BiSolidHide
-                    size={20}
-                    onClick={handleShowConfirmPassword}
-                    className="text-gray-400 cursor-pointer"
-                  />
-                ) : (
-                  <BiSolidShow
-                    size={20}
-                    onClick={handleShowConfirmPassword}
-                    className="text-gray-400 cursor-pointer"
-                  />
-                )
-              }
-            />
-            <FormInput
-              name="phoneNumber"
-              placeholder="+250 78......"
-              type="phoneNumber"
-              label="Phone Number"
-              value={phoneNumber}
-              onChange={handlePhoneChange}
-            />
-            <FormInput
-              name="location"
-              placeholder="ex: Kigali-Gasabo-Remera"
-              type="text"
-              label="Location"
-              value={location}
-              onChange={handleLocationChange}
-            />
+              <FormInput
+                name="confirmPassword"
+                placeholder="******"
+                label="ConfirmPassword"
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+                type={showConfirmPassword ? "text" : "password"}
+                showIcon={true}
+                icon={
+                  showConfirmPassword ? (
+                    <BiSolidHide
+                      size={20}
+                      onClick={handleShowConfirmPassword}
+                      className="text-gray-400 cursor-pointer"
+                    />
+                  ) : (
+                    <BiSolidShow
+                      size={20}
+                      onClick={handleShowConfirmPassword}
+                      className="text-gray-400 cursor-pointer"
+                    />
+                  )
+                }
+              />
+              <FormInput
+                name="phoneNumber"
+                placeholder="+250 78......"
+                type="phoneNumber"
+                label="Phone Number"
+                value={phoneNumber}
+                onChange={handlePhoneChange}
+              />
+              <FormInput
+                name="location"
+                placeholder="ex: Kigali-Gasabo-Remera"
+                type="text"
+                label="Location"
+                value={location}
+                onChange={handleLocationChange}
+              />
 
-            {/* ================================================================ */}
+              <FormInput
+                name="image"
+                type="file"
+                label="Upload hospital image"
+                onChange={handleFileInputChange}
+              />
 
-            <FormInput
-              name="image"
-              type="file"
-              label="Upload hospital image"
-              onChange={handleFileInputChange}
-            />
-            {/* ================================================================ */}
-            <FormInput
-              name="status"
-              type="text"
-              label="Hospital Status"
-              value={status}
-              placeholder="Private/Public"
-              onChange={handleStatusChange}
-            />
+              <FormInput
+                name="status"
+                type="text"
+                label="Hospital Status"
+                value={status}
+                placeholder="Private/Public"
+                onChange={handleStatusChange}
+              />
 
-            <div className="flex items-center justify-between">
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="submit"
-              >
-                RegisterHospital
-              </button>
-              <p
-                className="flex text-blue-500 font-bold cursor-pointer "
-                onClick={handleNavigate}
-              >
-                Have Account ? Login
-              </p>
-            </div>
-          </form>
-        </div>
+              <div className="flex items-center justify-between">
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="submit"
+                >
+                  RegisterHospital
+                </button>
+                <p
+                  className="flex text-blue-500 font-bold cursor-pointer "
+                  onClick={handleNavigate}
+                >
+                  Have Account ? Login
+                </p>
+              </div>
+            </form>
+          </div>
+        )}
       </div>
+
       <Footer />
     </>
   );
