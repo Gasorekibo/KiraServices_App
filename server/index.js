@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 const corsOptions = {
-  origin: ["https://kira-j0pt.onrender.com/"],
+  origin: ["https://kira-j0pt.onrender.com"],
   methods: "GET,POST",
   allowedHeaders: "Content-Type",
 };
