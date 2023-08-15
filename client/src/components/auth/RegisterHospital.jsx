@@ -54,7 +54,7 @@ const RegisterHospital = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:5000/api/hospitals",
+        "https://kira-backend.onrender.com/api/hospitals",
         formData
       );
 
