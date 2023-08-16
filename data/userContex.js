@@ -7,7 +7,7 @@ const initialState = {
   error: false,
 };
 
-export const useReducer = (state, action) => {
+export const userReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
       return {
