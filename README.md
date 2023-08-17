@@ -1,70 +1,72 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Kira Services Web App
 
-## Available Scripts
+![Alt Text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlaM7f4RrgmZcsns7mNiKk2xGAKvbhg1U7OQ&usqp=CAU)
 
-In the project directory, you can run:
 
-### `npm start`
+## Problem Background
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Rwanda aims for accessible healthcare, but long waiting times challenge this goal. Studies reveal that over 70% of patients wait more than two hours, and 40% wait over three hours (Uwera, 2020). Prolonged waits affect patient well-being and healthcare efficiency.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Our Proposed Solution
 
-### `npm test`
+To address the issue of long waits at hospitals, we have developed a web app called Kira Services. This app serves as a hospital hub where patients can access information related to hospitals in their vicinity. They can compare different hospitals, make informed decisions, and even book appointments with healthcare providers. This solution aims to reduce long waiting times, save patients money, and improve overall healthcare access.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Built With
 
-### `npm run build`
+### Frontend:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React
+- TailwindCss
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Backend:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Node.js
+- Express.js
+- MongoDB
 
-### `npm run eject`
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Prerequisites
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Before you begin, ensure you have Node.js installed on your machine.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Installation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Clone our repository.
+2. Run `npm install` to install all dependencies.
+3. Navigate to the client directory and run `npm start`.
+4. Navigate to the server directory and run `node index.js`.
 
-## Learn More
+## Demo
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Visit [Kira Services Web App](https://kiraserivices-client.onrender.com/) to see the app in action.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+# Hospitals API Documentation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Register a New Hospital
 
-### Analyzing the Bundle Size
+`POST /api/hospitals`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Example
 
-### Making a Progressive Web App
+```http
+POST /api/hospitals
+Content-Type: application/json
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+{
+  "email": "hospital@example.com",
+  "password": "securePassword",
+"image":"image.png",
+"status":"private"
+}
+```
 
-### Advanced Configuration
+## Get List of Hospital:
+`GET /api/hospitals`
+## Login Hospital:
+`POST /api/hospitals/auth`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
