@@ -33,7 +33,7 @@ Before you begin, ensure you have Node.js installed on your machine.
 
 ### Installation
 
-1. Clone our repository.
+1. Fork our repository.
 2. Run `npm install` to install all dependencies.
 3. Navigate to the client directory and run `npm start`.
 4. Navigate to the server directory and run `node index.js`.
