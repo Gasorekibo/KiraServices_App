@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Wallet Web App</title>
+</head>
+<body>
+    <header>
+        <h1>wallet digital app</h1>
+    </header>
+    <main>
+        <section class="transactions">
+            <h2>Transactions</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Account</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Transaction rows will be inserted here dynamically -->
+                </tbody>
+            </table>
+        </section>
+        <section class="budget">
+            <h2>Budget</h2>
+            <p>Your budget limit: $<span id="budgetLimit">1000</span></p>
+            <p>Remaining budget: $<span id="remainingBudget">800</span></p>
+        </section>
+        <section class="categories">
+            <h2>Categories</h2>
+            <!-- Category and subcategory options will be inserted here dynamically -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Wallet Web App</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
+
